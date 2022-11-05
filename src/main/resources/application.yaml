@@ -9,14 +9,14 @@ spring:
       enable-auto-commit: true
       allow-auto-create-topics: true
       bootstrap-servers: 192.168.100.22:9092
-      group-id: group_id_uni_pavao
+      group-id: group_id_alucar
     producer:
       offset-storage:
-        topic: topico_uni_pavao
+        topic: topico_alucar
       status-storage:
-        topic: topico_uni_pavao
+        topic: topico_alucar
       acks: all
-      client-id: uni_pavao_id
+      client-id: alucar_id
       bootstrap-servers: 192.168.100.22:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
