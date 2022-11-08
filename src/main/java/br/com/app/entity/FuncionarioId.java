@@ -15,8 +15,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class FuncionarioId implements Serializable {
-    private static final long serialVersionUID = 4363850877825898248L;
+public class FuncionarioId implements IPojo {
     @Column(name = "ID_FUNCIONARIO", nullable = false)
     private Long idFuncionario;
     @Column(name = "ID_EMPRESA_FILIAL_MATRIZ", nullable = false)

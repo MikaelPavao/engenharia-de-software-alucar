@@ -3,19 +3,10 @@ loggers:
     level: DEBUG
 server:
   port: 8081
+application:
+  title: ALUCAR-APP
+  version: 1.0.0.0-SNAPSHOT
 spring:
-#  kafka:
-#    consumer:
-#      bootstrap-servers: kafka:9092
-#      group-id: group_id
-#      auto-offset-reset: earliest
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-#      properties.spring.json.trusted.packages: br.com.app
-#    producer:
-#      bootstrap-servers: kafka:9092
-#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:banco-alucar

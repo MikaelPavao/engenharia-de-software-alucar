@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente implements IPojo{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE", nullable = false)
@@ -42,6 +42,7 @@ public class Cliente {
     private String ocupacao;
 
     @OneToMany(mappedBy = "idCliente")
+    @ToString.Exclude
     private Set<LocacaoOS> locacaoOs = new LinkedHashSet<>();
 
 }

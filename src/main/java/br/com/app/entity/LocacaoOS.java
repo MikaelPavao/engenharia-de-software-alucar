@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "locacao_os")
-public class LocacaoOS {
+public class LocacaoOS implements IPojo{
     @EmbeddedId
     private LocacaoOSId id;
 

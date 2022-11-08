@@ -15,8 +15,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocacaoOSId implements Serializable {
-    private static final long serialVersionUID = 8372850570097350181L;
+public class LocacaoOSId implements IPojo {
     @Column(name = "ID_LOCACAO_OS", nullable = false)
     private Long idLocacaoOs;
     @Column(name = "ID_EMPRESA_FILIAL_MATRIZ", nullable = false)

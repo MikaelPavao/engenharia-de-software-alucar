@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "empresa_filial_matriz")
-public class EmpresaFilialMatriz {
+public class EmpresaFilialMatriz implements IPojo{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_EMPRESA_FILIAL_MATRIZ", nullable = false)

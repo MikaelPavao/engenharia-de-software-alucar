@@ -42,5 +42,6 @@ public class Funcionario {
     private String email;
 
     @OneToMany(mappedBy = "funcionario")
+    @ToString.Exclude
     private Set<LocacaoOS> locacaoOs = new LinkedHashSet<>();
 }
