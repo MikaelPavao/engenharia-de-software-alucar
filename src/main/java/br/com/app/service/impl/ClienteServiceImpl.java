@@ -4,11 +4,11 @@ import br.com.app.entity.Cliente;
 import br.com.app.repository.ClienteRepository;
 import br.com.app.service.ClienteService;
 import br.com.app.service.ExceptionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -18,11 +18,16 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
+@RequiredArgsConstructor
+@Slf4j
+@Service
 public class ClienteServiceImpl implements ClienteService, ExceptionService {
 
-    @Autowired
-    ClienteRepository clienteRepository;
+
+    private final ClienteRepository clienteRepository;
 
     @PersistenceContext
     EntityManager entityManager;
@@ -37,12 +42,12 @@ public class ClienteServiceImpl implements ClienteService, ExceptionService {
 
         Root<Cliente> rootCliente = query.from(Cliente.class);
 
-        query.select(rootCliente)
-                .where(criteriaBuilder.equal(rootCliente.get("rg"), rg));
+        query.where(criteriaBuilder.equal(rootCliente.get("rg"), rg));
 
         Cliente cliente = entityManager.createQuery(query).getSingleResult();
 
-        Assert.isNull(cliente, clienteNaoEncontradoException());
+        if (Objects.isNull(cliente))
+            clienteNaoEncontradoException();
 
         return cliente;
     }
@@ -61,18 +66,20 @@ public class ClienteServiceImpl implements ClienteService, ExceptionService {
 
     @Transactional
     @Override
-    public void cadastrar(Cliente cliente) {
+    public void salvar(Cliente cliente) {
         validarExistenciaCliente(cliente);
         clienteRepository.saveAndFlush(cliente);
     }
 
     private void validarExistenciaCliente(Cliente clienteNovo) {
 
-        buscarTodos()
+        Optional<Cliente> optionalCliente = buscarTodos()
                 .stream()
                 .filter(clienteAntigo -> clienteAntigo.getRg().equalsIgnoreCase(clienteNovo.getRg()))
-                .findFirst()
-                .ifPresent(clienteEncontradoException());
+                .findFirst();
+
+        if (optionalCliente.isPresent())
+            clienteEncontradoException();
 
     }
 

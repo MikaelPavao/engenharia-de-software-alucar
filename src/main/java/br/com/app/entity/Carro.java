@@ -2,11 +2,14 @@ package br.com.app.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
 
 @Entity
 @Getter
@@ -14,11 +17,12 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "carros")
+@DynamicUpdate
+@Table(name = "carros", schema = DEFAULT_SCHEMA)
 public class Carro implements IPojo{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CARROS", nullable = false)
+    @Column(name = "ID_CARRO", nullable = false)
     private Long id;
 
     @Column(name = "MODELO", nullable = false, length = 200)
@@ -35,8 +39,8 @@ public class Carro implements IPojo{
 
     @ManyToMany
     @JoinTable(name = "rel_carros_locacao_os",
-            joinColumns = @JoinColumn(name = "ID_CARROS",
-                    referencedColumnName = "ID_CARROS",
+            joinColumns = @JoinColumn(name = "ID_CARRO",
+                    referencedColumnName = "ID_CARRO",
                     foreignKey = @ForeignKey(name = "carros_rel_carros_locacao_os_fk")),
             inverseJoinColumns = @JoinColumn(name = "ID_LOCACAO_OS",
                     referencedColumnName = "ID_LOCACAO_OS",

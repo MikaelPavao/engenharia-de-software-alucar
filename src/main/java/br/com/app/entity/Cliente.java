@@ -1,11 +1,15 @@
 package br.com.app.entity;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
 
 @Entity
 @Getter
@@ -13,7 +17,8 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cliente")
+@DynamicUpdate
+@Table(name = "cliente", schema = DEFAULT_SCHEMA)
 public class Cliente implements IPojo{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +26,7 @@ public class Cliente implements IPojo{
     private Long id;
 
     @Column(name = "DATA_NASCIMENTO", nullable = false)
-    private LocalDate dataNascimento;
+    private Date dataNascimento;
 
     @Column(name = "NOME", nullable = false, length = 200)
     private String nome;
@@ -41,8 +46,16 @@ public class Cliente implements IPojo{
     @Column(name = "OCUPACAO", nullable = false, length = 45)
     private String ocupacao;
 
-    @OneToMany(mappedBy = "idCliente")
+    @OneToMany(mappedBy = "clienteLocacao")
     @ToString.Exclude
-    private Set<LocacaoOS> locacaoOs = new LinkedHashSet<>();
+    private Set<LocacaoOS> locacaoOs;
+
+    @OneToMany(mappedBy = "clientePagamento")
+    private Set<Pagamento> pagamento;
+
+    @OneToMany(mappedBy = "clienteCartao")
+    private Set<Cartao> cartoes;
+
+
 
 }
