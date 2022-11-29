@@ -1,6 +1,8 @@
 package br.com.app.controller;
 
+import br.com.app.entity.Carro;
 import br.com.app.entity.Cliente;
+import br.com.app.service.CarroService;
 import br.com.app.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,8 @@ import javax.websocket.server.PathParam;
 @RequiredArgsConstructor
 public class AlucarController {
     private final ClienteService clienteService;
+
+    private final CarroService carroService;
 
     @GetMapping(value = "/buscar/{rg}/cliente")
     public ResponseEntity<?> buscarCliente(@PathParam("rg") String rg) {
@@ -65,6 +69,47 @@ public class AlucarController {
             return ResponseEntity.badRequest().body(null);
         }
     }
+
+    @PostMapping(value = "/cadastrar/carro")
+    public ResponseEntity<?> cadastrarCarro(@RequestBody Carro carro) {
+
+        try {
+            carroService.cadastrarCarro(carro);
+            return ResponseEntity
+                    .ok()
+                    .body("Carro cadastrado com sucesso");
+        } catch (EntityExistsException ex) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(ex.getMessage());
+        }
+    }
+
+    @GetMapping(value = "/buscar/carro")
+    public ResponseEntity<?> buscarCarro(@PathVariable("placa") String placa) {
+
+        try {
+            Carro carro = carroService.buscarPorPlaca(placa);
+            return ResponseEntity.ok().body(carro);
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @GetMapping(value = "/listar/carros")
+    public ResponseEntity<Page<Carro>> listarCarros(@PageableDefault(sort = "modelo",
+            direction = Sort.Direction.ASC,
+            page = 0,
+            size = 10) Pageable pageable) {
+
+        try {
+            Page<Carro> carros = carroService.buscarTodosPaginado(pageable);
+            return ResponseEntity.ok().body(carros);
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
 
     @PostMapping(value = "/logar/cliente/{usuario}/senha/{senha}")
     public ResponseEntity<?> logarSistema(@PathVariable("usuario") String usuario, @PathVariable("senha") String senha) {
