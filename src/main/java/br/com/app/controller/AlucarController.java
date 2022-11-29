@@ -1,10 +1,7 @@
 package br.com.app.controller;
 
-import br.com.app.entity.Carro;
-import br.com.app.entity.Cartao;
 import br.com.app.entity.Cliente;
-import br.com.app.entity.Pagamento;
-import br.com.app.service.*;
+import br.com.app.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -25,15 +22,6 @@ import javax.websocket.server.PathParam;
 @RequiredArgsConstructor
 public class AlucarController {
     private final ClienteService clienteService;
-
-    private final CarroService carroService;
-
-    private final FuncionarioService funcionarioService;
-
-    private final PagamentoService pagamentoService;
-
-    private final CartaoService cartaoService;
-
 
     @GetMapping(value = "/buscar/{rg}/cliente")
     public ResponseEntity<?> buscarCliente(@PathParam("rg") String rg) {
@@ -78,50 +66,13 @@ public class AlucarController {
         }
     }
 
-    @PostMapping(value = "/cadastrar/cliente/pagamento")
-    public ResponseEntity<?> cadastrarClientePagamento(@RequestBody Pagamento pagamento) {
+    @PostMapping(value = "/logar/cliente/{usuario}/senha/{senha}")
+    public ResponseEntity<?> logarSistema(@PathVariable("usuario") String usuario, @PathVariable("senha") String senha) {
 
-        try {
-            pagamentoService.registraPagamento(pagamento);
-            return ResponseEntity
-                    .ok()
-                    .body("Pagamento efetuado com sucesso");
-        } catch (EntityExistsException ex) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(ex.getMessage());
-        }
+        if (usuario.equals("admin") && senha.endsWith("1"))
+            return ResponseEntity.ok().body("Logado com sucesso");
+        else
+            return ResponseEntity.badRequest().body("Não permitido logar");
     }
-
-    @PostMapping(value = "/cadastrar/{rg}/cartao")
-    public ResponseEntity<?> cadastrarClienteCartao(@RequestBody Cartao cartao, @PathVariable("rg") String rg) {
-
-        try {
-            cartaoService.cadastrarCartao(cartao, rg);
-            return ResponseEntity
-                    .ok()
-                    .body("Cartão cliente cadastrado com sucesso");
-        } catch (EntityExistsException ex) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(ex.getMessage());
-        }
-    }
-
-    @PostMapping(value = "/cadastrar/veiculo")
-    public ResponseEntity<?> cadastrarVeiculo(@RequestBody Carro carro) {
-
-        try {
-            carroService.cadastrarCarro(carro);
-            return ResponseEntity
-                    .ok()
-                    .body("Veiculo cadastrado com sucesso");
-        } catch (EntityExistsException ex) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(ex.getMessage());
-        }
-    }
-
 
 }

@@ -4,9 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
@@ -50,11 +48,11 @@ public class Cliente implements IPojo{
     @ToString.Exclude
     private Set<LocacaoOS> locacaoOs;
 
-    @OneToMany(mappedBy = "clientePagamento")
-    private Set<Pagamento> pagamento;
+    @Column(name = "pagamento")
+    private String pagamento;
 
-    @OneToMany(mappedBy = "clienteCartao")
-    private Set<Cartao> cartoes;
+    @Column(name = "cartao")
+    private String cartao;
 
 
 

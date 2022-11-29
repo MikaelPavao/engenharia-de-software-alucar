@@ -6,7 +6,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
@@ -24,14 +23,6 @@ public class LocacaoOS implements IPojo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_LOCACAO_OS", nullable = false)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_EMPRESA_FILIAL_MATRIZ", referencedColumnName = "ID_EMPRESA_FILIAL_MATRIZ")
-    private EmpresaFilialMatriz empresaFilialMatrizLocacaoOS;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_FUNCIONARIO", referencedColumnName = "ID_FUNCIONARIO")
-    private Funcionario funcionarioLocacao;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
