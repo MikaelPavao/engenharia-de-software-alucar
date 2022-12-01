@@ -12,6 +12,7 @@ import java.util.Set;
 import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
 
 @Entity
+@Builder
 @Getter
 @Setter
 @ToString
@@ -22,7 +23,7 @@ import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
 public class Carro implements IPojo{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CARRO", nullable = false)
+    @Column(name = "ID_CARRO")
     private Long id;
 
     @Column(name = "MODELO", nullable = false, length = 200)
@@ -46,7 +47,7 @@ public class Carro implements IPojo{
                     referencedColumnName = "ID_LOCACAO_OS",
                     foreignKey = @ForeignKey(name = "rel_carros_locacao_os_carros_fk")))
     @ToString.Exclude
-    private Set<LocacaoOS> locacaoOs = new LinkedHashSet<>();
+    private Set<LocacaoOS> locacaoOs;
 
     @Override
     public boolean equals(Object o) {

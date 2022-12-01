@@ -10,6 +10,7 @@ import java.util.Set;
 import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
 
 @Entity
+@Builder
 @Getter
 @Setter
 @ToString
@@ -20,7 +21,7 @@ import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
 public class Cliente implements IPojo{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CLIENTE", nullable = false)
+    @Column(name = "ID_CLIENTE")
     private Long id;
 
     @Column(name = "DATA_NASCIMENTO", nullable = false)

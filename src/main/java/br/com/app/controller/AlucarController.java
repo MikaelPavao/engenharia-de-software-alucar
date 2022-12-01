@@ -1,9 +1,12 @@
 package br.com.app.controller;
 
+import br.com.app.dto.AluguelDto;
 import br.com.app.entity.Carro;
 import br.com.app.entity.Cliente;
+import br.com.app.entity.LocacaoOS;
 import br.com.app.service.CarroService;
 import br.com.app.service.ClienteService;
+import br.com.app.service.LocacaoOsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -26,6 +29,8 @@ public class AlucarController {
     private final ClienteService clienteService;
 
     private final CarroService carroService;
+
+    private final LocacaoOsService locacaoOsService;
 
     @GetMapping(value = "/buscar/{rg}/cliente")
     public ResponseEntity<?> buscarCliente(@PathParam("rg") String rg) {
@@ -118,6 +123,16 @@ public class AlucarController {
             return ResponseEntity.ok().body("Logado com sucesso");
         else
             return ResponseEntity.badRequest().body("Não permitido logar");
+    }
+
+    @PostMapping(value = "/ordem-servico/efetivar")
+    public ResponseEntity<LocacaoOS> efetivarAluguel(@RequestBody AluguelDto alugueldto) {
+
+        try {
+            return ResponseEntity.ok().body(locacaoOsService.processarOS(alugueldto));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
 }

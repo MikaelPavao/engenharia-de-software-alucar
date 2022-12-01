@@ -11,6 +11,7 @@ import java.util.Set;
 import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
 
 @Entity
+@Builder
 @Getter
 @Setter
 @ToString
