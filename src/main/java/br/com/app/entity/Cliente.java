@@ -1,5 +1,6 @@
 package br.com.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
+import static br.com.app.entity.utils.DefaultConstant.DEFAULT_SCHEMA;
 
 @Entity
 @Builder
@@ -30,7 +31,7 @@ public class Cliente implements IPojo{
     @Column(name = "NOME", nullable = false, length = 200)
     private String nome;
 
-    @Column(name = "RG", nullable = false, length = 15)
+    @Column(name = "RG", nullable = false, length = 15, unique = true)
     private String rg;
 
     @Column(name = "EMAIL", nullable = false)
@@ -45,8 +46,8 @@ public class Cliente implements IPojo{
     @Column(name = "OCUPACAO", nullable = false, length = 45)
     private String ocupacao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "clienteLocacao")
-    @ToString.Exclude
     private Set<LocacaoOS> locacaoOs;
 
     @Column(name = "pagamento")

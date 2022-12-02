@@ -1,4 +1,4 @@
-package br.com.app.config.utils;
+package br.com.app.entity.utils;
 
 public interface DefaultConstant {
 

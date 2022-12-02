@@ -12,6 +12,6 @@ import java.util.Set;
 @Repository
 public interface CarroRepository extends JpaRepository<Carro, Long> {
 
-    @Query("select c from Carro c where placa = :placas")
+    @Query("select c from Carro c where c.placa in (:placas)")
     Set<Carro> findAllByPlaca(@Param("placas") List<String> placas);
 }

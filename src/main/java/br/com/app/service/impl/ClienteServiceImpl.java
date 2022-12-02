@@ -42,9 +42,12 @@ public class ClienteServiceImpl implements ClienteService, ExceptionService {
         Root<Cliente> rootCliente = query.from(Cliente.class);
 
         query.where(criteriaBuilder.equal(rootCliente.get("rg"), rg));
-
-        Cliente cliente = entityManager.createQuery(query).getSingleResult();
-
+        Cliente cliente = new Cliente();
+        try {
+            cliente = entityManager.createQuery(query).getSingleResult();
+        } catch (Exception exception) {
+            clienteNaoEncontradoException();
+        }
         if (Objects.isNull(cliente))
             clienteNaoEncontradoException();
 

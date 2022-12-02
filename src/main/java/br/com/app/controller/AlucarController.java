@@ -1,5 +1,6 @@
 package br.com.app.controller;
 
+import br.com.app.config.CargaBase;
 import br.com.app.dto.AluguelDto;
 import br.com.app.entity.Carro;
 import br.com.app.entity.Cliente;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 @Controller
 @RestController
@@ -31,6 +33,8 @@ public class AlucarController {
     private final CarroService carroService;
 
     private final LocacaoOsService locacaoOsService;
+
+    private final CargaBase cargaBase;
 
     @GetMapping(value = "/buscar/{rg}/cliente")
     public ResponseEntity<?> buscarCliente(@PathParam("rg") String rg) {
@@ -90,14 +94,14 @@ public class AlucarController {
         }
     }
 
-    @GetMapping(value = "/buscar/carro")
+    @GetMapping(value = "/buscar/carro/{placa}")
     public ResponseEntity<?> buscarCarro(@PathVariable("placa") String placa) {
 
         try {
             Carro carro = carroService.buscarPorPlaca(placa);
             return ResponseEntity.ok().body(carro);
         } catch (Exception ex) {
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 
@@ -125,14 +129,20 @@ public class AlucarController {
             return ResponseEntity.badRequest().body("Não permitido logar");
     }
 
-    @PostMapping(value = "/ordem-servico/efetivar")
-    public ResponseEntity<LocacaoOS> efetivarAluguel(@RequestBody AluguelDto alugueldto) {
+    @PostMapping(value = "/ordem-servico/cliente/{rg}/efetivar")
+    public ResponseEntity<LocacaoOS> efetivarAluguel(@PathVariable("rg") String rgCliente, @RequestBody List<AluguelDto> alugueldto) {
 
         try {
-            return ResponseEntity.ok().body(locacaoOsService.processarOS(alugueldto));
+            return ResponseEntity.ok().body(locacaoOsService.processarOS(alugueldto, rgCliente));
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @PostMapping(value = "/carga-base")
+    public void cargaBase() {
+        cargaBase.cargaClientes();
+        cargaBase.cargaCarro();
     }
 
 }

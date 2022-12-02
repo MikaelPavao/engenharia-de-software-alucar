@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
-import static br.com.app.config.utils.DefaultConstant.DEFAULT_SCHEMA;
+import static br.com.app.entity.utils.DefaultConstant.DEFAULT_SCHEMA;
 
 @Entity
 @Builder

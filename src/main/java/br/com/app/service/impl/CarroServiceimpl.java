@@ -36,9 +36,12 @@ public class CarroServiceimpl implements CarroService, ExceptionService {
         CriteriaQuery<Carro> query = criteriaBuilder.createQuery(Carro.class);
         Root<Carro> root = query.from(Carro.class);
         query.select(root).where(criteriaBuilder.equal(root.get("placa"), placa));
-
-        Carro carro = entityManager.createQuery(query).getSingleResult();
-
+        Carro carro = new Carro();
+        try {
+            carro = entityManager.createQuery(query).getSingleResult();
+        } catch (Exception exception) {
+            carroNaoEncontradoException();
+        }
         if (Objects.isNull(carro))
             carroNaoEncontradoException();
 
