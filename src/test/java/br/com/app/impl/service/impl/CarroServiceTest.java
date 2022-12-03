@@ -1,22 +1,17 @@
 package br.com.app.impl.service.impl;
 
 import br.com.app.entity.Carro;
-import br.com.app.repository.CarroRepository;
 import br.com.app.service.impl.CarroServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.verification.Times;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-import javax.persistence.EntityManager;
-
-import static br.com.app.impl.service.impl.ObjectFactory.*;
+import static br.com.app.impl.service.impl.ObjectFactory.CARRO;
+import static br.com.app.impl.service.impl.ObjectFactory.PAGEABLE;
 import static org.mockito.Mockito.*;
 
 
