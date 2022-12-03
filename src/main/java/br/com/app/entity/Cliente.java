@@ -19,7 +19,7 @@ import static br.com.app.entity.utils.DefaultConstant.DEFAULT_SCHEMA;
 @AllArgsConstructor
 @DynamicUpdate
 @Table(name = "cliente", schema = DEFAULT_SCHEMA)
-public class Cliente implements IPojo{
+public class Cliente implements IPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE")
@@ -55,7 +55,6 @@ public class Cliente implements IPojo{
 
     @Column(name = "cartao")
     private String cartao;
-
 
 
 }

@@ -8,6 +8,7 @@ public enum CategoriaEnum {
     SUV("Suv");
 
     private String modelo;
+
     CategoriaEnum(String modelo) {
         this.modelo = modelo;
     }

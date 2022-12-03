@@ -15,10 +15,10 @@ spring:
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:alucar;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS alucar
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/alucar?useSSL=false&allowMultiQueries=true&serverTimezone=UTC
-#    username: root
-#    password:
+  #    driver-class-name: com.mysql.cj.jdbc.Driver
+  #    url: jdbc:mysql://localhost:3306/alucar?useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+  #    username: root
+  #    password:
   h2:
     console:
       enabled: true
@@ -29,7 +29,7 @@ spring:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
-#    database-platform: org.hibernate.dialect.MySQL8Dialect
+    #    database-platform: org.hibernate.dialect.MySQL8Dialect
     properties:
       default_schema: alucar
 

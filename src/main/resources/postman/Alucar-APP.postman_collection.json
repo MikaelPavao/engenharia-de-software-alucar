@@ -1,223 +1,223 @@
 {
-	"info": {
-		"_postman_id": "e04d4f6c-c1db-4725-8c84-458ebd11999a",
-		"name": "Alucar-APP",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "18853105"
-	},
-	"item": [
-		{
-			"name": "Cadastro Cliente",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"dataNascimento\": \"1989-03-28\",\r\n    \"nome\": \"Rudnei Pavao\",\r\n    \"rg\": \"229989965\",\r\n    \"email\": \"sabrina@fasdfasd.com.br\",\r\n    \"telefone\": \"519982734\",\r\n    \"endereco\":  \"rua fulano 23 2312e  weqweqeqwe \",\r\n    \"ocupacao\": \"trabalhando muito\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8081/alucar/cadastrar/cliente",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"cadastrar",
-						"cliente"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Efetivar OS de Aluguel",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "\r\n[\r\n    {\r\n    \"placaCarro\":\"our-2345\",\r\n    \"qtdDias\": 4,\r\n    \"vlAluguel\": 123.99\r\n    },\r\n    {\r\n    \"placaCarro\":\"ert-2345\",\r\n    \"qtdDias\": 4,\r\n    \"vlAluguel\": 50.99\r\n    }\r\n]\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8081/alucar/ordem-servico/cliente/45565756775/efetivar",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"ordem-servico",
-						"cliente",
-						"45565756775",
-						"efetivar"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar Cliente",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/alucar/buscar/45565756775/cliente",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"buscar",
-						"45565756775",
-						"cliente"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar Clientes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/alucar/listar/cliente",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"listar",
-						"cliente"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Cadastro Carro",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"modelo\": \"BMW\",\r\n    \"placa\": \"our-2345\",\r\n    \"status\": \"Livre\",\r\n    \"categoria\": \"SUV\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8081/alucar/cadastrar/carro",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"cadastrar",
-						"carro"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar Carro",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/alucar/buscar/carro/UIR-4P99",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"buscar",
-						"carro",
-						"UIR-4P99"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar Carros",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/alucar/listar/carros",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"listar",
-						"carros"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login Service",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/alucar/logar/cliente/admin/senha/12341",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"logar",
-						"cliente",
-						"admin",
-						"senha",
-						"12341"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Carga Base",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "localhost:8081/alucar/carga-base",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"alucar",
-						"carga-base"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "e04d4f6c-c1db-4725-8c84-458ebd11999a",
+    "name": "Alucar-APP",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "18853105"
+  },
+  "item": [
+    {
+      "name": "Cadastro Cliente",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"dataNascimento\": \"1989-03-28\",\r\n    \"nome\": \"Rudnei Pavao\",\r\n    \"rg\": \"229989965\",\r\n    \"email\": \"sabrina@fasdfasd.com.br\",\r\n    \"telefone\": \"519982734\",\r\n    \"endereco\":  \"rua fulano 23 2312e  weqweqeqwe \",\r\n    \"ocupacao\": \"trabalhando muito\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8081/alucar/cadastrar/cliente",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "cadastrar",
+            "cliente"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Efetivar OS de Aluguel",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n[\r\n    {\r\n    \"placaCarro\":\"our-2345\",\r\n    \"qtdDias\": 4,\r\n    \"vlAluguel\": 123.99\r\n    },\r\n    {\r\n    \"placaCarro\":\"ert-2345\",\r\n    \"qtdDias\": 4,\r\n    \"vlAluguel\": 50.99\r\n    }\r\n]\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8081/alucar/ordem-servico/cliente/45565756775/efetivar",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "ordem-servico",
+            "cliente",
+            "45565756775",
+            "efetivar"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Cliente",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8081/alucar/buscar/45565756775/cliente",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "buscar",
+            "45565756775",
+            "cliente"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Clientes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8081/alucar/listar/cliente",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "listar",
+            "cliente"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cadastro Carro",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"modelo\": \"BMW\",\r\n    \"placa\": \"our-2345\",\r\n    \"status\": \"Livre\",\r\n    \"categoria\": \"SUV\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8081/alucar/cadastrar/carro",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "cadastrar",
+            "carro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Carro",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8081/alucar/buscar/carro/UIR-4P99",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "buscar",
+            "carro",
+            "UIR-4P99"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Carros",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8081/alucar/listar/carros",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "listar",
+            "carros"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login Service",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:8081/alucar/logar/cliente/admin/senha/12341",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "logar",
+            "cliente",
+            "admin",
+            "senha",
+            "12341"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Carga Base",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:8081/alucar/carga-base",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "alucar",
+            "carga-base"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }

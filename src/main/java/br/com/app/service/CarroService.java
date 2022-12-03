@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 public interface CarroService {
 
     void cadastrarCarro(Carro carro);
+
     Carro buscarPorPlaca(String placa);
 
     Page<Carro> buscarTodosPaginado(Pageable pageable);

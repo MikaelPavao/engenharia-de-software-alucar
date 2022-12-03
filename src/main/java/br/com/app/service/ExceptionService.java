@@ -16,11 +16,11 @@ public interface ExceptionService {
         throw new EntityNotFoundException("Cliente não encontrado na base de dados!");
     }
 
-    default void carroEncontradoException(){
+    default void carroEncontradoException() {
         throw new EntityExistsException("Carro já cadastrado na base de dados!");
     }
 
-    default void carroNaoEncontradoException(){
+    default void carroNaoEncontradoException() {
         throw new EntityNotFoundException("Carro não cadastrado na base de dados!");
     }
 }

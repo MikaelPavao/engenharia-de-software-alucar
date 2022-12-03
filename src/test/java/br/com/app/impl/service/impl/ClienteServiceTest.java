@@ -40,7 +40,7 @@ public class ClienteServiceTest {
 
     @Test
     public void buscarTodosSuccess() {
-    doReturn(CLIENTE_LIST).when(clienteService).buscarTodos();
+        doReturn(CLIENTE_LIST).when(clienteService).buscarTodos();
 
         List<Cliente> clientes = clienteService.buscarTodos();
 

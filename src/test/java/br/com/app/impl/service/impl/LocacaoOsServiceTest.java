@@ -33,7 +33,7 @@ public class LocacaoOsServiceTest {
 
         BigDecimal valorLocacao = locacaoOS.getValorLocacao();
 
-        Assertions.assertEquals(valorLocacao,new BigDecimal("1009.90"));
+        Assertions.assertEquals(valorLocacao, new BigDecimal("1009.90"));
 
         verify(locacaoOsService, new Times(1)).processarOS(LIST_ALUGUEL_DTO, RG);
     }
