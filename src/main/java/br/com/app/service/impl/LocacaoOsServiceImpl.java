@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +41,7 @@ public class LocacaoOsServiceImpl implements LocacaoOsService {
                 .dataLocacao(LocalDate.now())
                 .dataEntrega(LocalDate.now().plusDays(qtdDias))
                 .carros(carros)
-                .valorLocacao(calculaValorAlugue(mapValorAluguel))
+                .valorLocacao(calculaValorAluguel(mapValorAluguel))
                 .build());
 
     }
@@ -57,7 +56,7 @@ public class LocacaoOsServiceImpl implements LocacaoOsService {
         return map;
     }
 
-    private BigDecimal calculaValorAlugue(Map<BigDecimal, BigDecimal> map) {
+    private BigDecimal calculaValorAluguel(Map<BigDecimal, BigDecimal> map) {
         AtomicReference<BigDecimal> valorTotal = new AtomicReference<>(BigDecimal.ZERO);
         map.forEach((valorAlugel, fatorMultiplicador) -> {
             valorTotal.updateAndGet(v -> valorTotal.get().add(valorAlugel.multiply(fatorMultiplicador)));
