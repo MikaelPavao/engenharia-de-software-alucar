@@ -8,6 +8,9 @@ import br.com.app.entity.LocacaoOS;
 import br.com.app.service.CarroService;
 import br.com.app.service.ClienteService;
 import br.com.app.service.LocacaoOsService;
+import br.com.app.service.report.factory.AluguelCarrosReport;
+import br.com.app.service.report.factory.Report;
+import com.itextpdf.text.DocumentException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.websocket.server.PathParam;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @Controller
@@ -36,6 +40,8 @@ public class AlucarController {
     private final LocacaoOsService locacaoOsService;
 
     private final CargaBase cargaBase;
+
+    private Report report;
 
     @GetMapping(value = "/buscar/{rg}/cliente")
     public ResponseEntity<?> buscarCliente(@PathParam("rg") String rg) {
@@ -144,6 +150,20 @@ public class AlucarController {
     public void cargaBase() {
         cargaBase.cargaClientes();
         cargaBase.cargaCarro();
+    }
+
+    @PostMapping(value = "/aluguel-carros/relatorio")
+    public void gerarRelatprio(@RequestBody List<Carro> carros) {
+
+        carros.forEach(carro -> {
+            try {
+                report = new AluguelCarrosReport();
+                report.buildPDF(carro);
+            } catch (DocumentException | FileNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+
     }
 
 }

@@ -11,4 +11,6 @@ public interface CarroService {
     Carro buscarPorPlaca(String placa);
 
     Page<Carro> buscarTodosPaginado(Pageable pageable);
+
+    void gerarRelatorio(Carro carro);
 }

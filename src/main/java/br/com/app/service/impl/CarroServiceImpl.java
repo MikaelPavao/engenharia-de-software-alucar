@@ -4,6 +4,7 @@ import br.com.app.entity.Carro;
 import br.com.app.repository.CarroRepository;
 import br.com.app.service.CarroService;
 import br.com.app.service.ExceptionService;
+import br.com.app.service.report.factory.AluguelCarrosReport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,6 +52,11 @@ public class CarroServiceImpl implements CarroService, ExceptionService {
     @Override
     public Page<Carro> buscarTodosPaginado(Pageable pageable) {
         return carroRepository.findAll(pageable);
+    }
+
+    @Override
+    public void gerarRelatorio(Carro carro) {
+        new AluguelCarrosReport();
     }
 
     private void voidvalidarExistenciaCarro(Carro carro) {
